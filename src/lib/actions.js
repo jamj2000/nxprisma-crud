@@ -17,7 +17,7 @@ export async function newArticulo(formData) {
   try {
     const nombre = formData.get('nombre')
     const descripcion = formData.get('descripcion')
-    const precio = Number( formData.get('precio')) 
+    const precio = Number( formData.get('precio'))*100  //convertimos € a centimos
 
     const articulo = await prisma.articulo.create({
       data: { nombre, descripcion, precio  },
@@ -36,7 +36,7 @@ export async function editArticulo(formData) {
   const id = Number( formData.get('id') )
   const nombre = formData.get('nombre')
   const descripcion = formData.get('descripcion')
-  const precio = Number( formData.get('precio')) 
+  const precio = Number( formData.get('precio'))*100  //convertimos € a centimos
 
   try {
     const articulo = await prisma.articulo.update({

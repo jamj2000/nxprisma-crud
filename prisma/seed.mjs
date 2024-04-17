@@ -5,17 +5,17 @@ const articulos = [
     {
         nombre: 'Monitor 17 pulgadas',
         descripcion: 'Monitor plano LCD',
-        precio: 110.22,
+        precio: 11022,  // en centimos
     },
     {
         nombre: 'Teclado',
         descripcion: 'Teclado USB en español',
-        precio: 20.12,
+        precio: 2012,  // en centimos
     },
     {
         nombre: 'Impresora',
         descripcion: 'Impresora láser a color',
-        precio: 360.05,
+        precio: 36005, // en centimos
     },
 ];
 

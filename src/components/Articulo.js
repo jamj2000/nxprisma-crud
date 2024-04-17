@@ -5,7 +5,7 @@ function Articulo({ children, articulo }) {
         <div style={{ 'border': '1px solid lightgrey', 'padding': '50px' }}>
             <p><strong>{articulo.nombre}</strong></p>
             <p>{articulo.descripcion}</p>
-            <p>{articulo.precio.toString()} €</p>
+            <p>{(articulo.precio/100).toString()} €</p>
             {children}
         </div>
     )
