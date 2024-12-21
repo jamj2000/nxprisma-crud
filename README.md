@@ -6,6 +6,7 @@ El proyecto está pensado para trabajar con Postgres, pero con unos pequeños aj
 
 Puedes obtener una base de datos Postgres gratuita en uno de los siguientes sitios:
 
+- [Neon](https://neon.tech/)
 - [Vercel](https://vercel.com/docs/storage/vercel-postgres)
 - [Supabase](https://supabase.com/)
   
