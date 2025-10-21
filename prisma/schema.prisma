@@ -3,8 +3,8 @@ generator client {
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")  
+  provider = "mysql"
+  url      = env("DATABASE_URL")
 }
 
 // datasource db {
@@ -12,26 +12,25 @@ datasource db {
 //   url      = env("DATABASE_URL") 
 // }
 
-
 model Articulo {
-  id          Int       @id @default(autoincrement())
+  id          Int         @id @default(autoincrement())
   nombre      String
   descripcion String?
-  precio      Int?      // En centimos, para evitar números en coma flotante
-  createdAt   DateTime  @default(now()) 
-  updatedAt   DateTime  @updatedAt
+  precio      Int? // En centimos, para evitar números en coma flotante
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
   proveedores Proveedor[]
 
   @@map("articulos")
 }
 
 model Proveedor {
-  id          Int       @id @default(autoincrement())
-  nombre      String
-  nacional    Boolean?
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-  articulos   Articulo[]
+  id        Int        @id @default(autoincrement())
+  nombre    String
+  nacional  Boolean?
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  articulos Articulo[]
 
   @@map("proveedores")
 }
