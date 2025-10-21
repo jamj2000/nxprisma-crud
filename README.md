@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Dar de alta la base de datos
 
-## Getting Started
+Para hacer funcionar este proyecto necesitarás una base de datos. 
 
-First, run the development server:
+El proyecto está pensado para trabajar con Postgres, pero con unos pequeños ajustes puedes usar otro tipo de base de datos MySQL.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+El script SQL para crear las tablas es `src/database/tablas.sql`
+
+Después de ejecutar el script anterior, introduce datos de prueba:
+
+```sh
+npm  run  seed
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Configurar aplicación
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+> **IMPORTANTE**: Para que la aplicación funcione correctamente, deberás configuar también el archivo `.env` situado en la carpeta raíz del proyecto, es decir en la carpeta donde tenemos el `README.md`
 
-## Learn More
+Sigue los siguientes pasos, esta vez en la carpeta raíz del proyecto:
 
-To learn more about Next.js, take a look at the following resources:
+1. Crear archivo `.env`:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```sh
+mv .env.example  .env
+nano  .env
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2. Editar la variable de entorno correspondiente a la URL de tu base de datos en Vercel o Supabase:
 
-## Deploy on Vercel
+```
+DATABASE_URL="mysql://..."
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+El formato de la URL es el siguiente `DATABASE_URL="mysql://usuario:password@host:3036/basedatos"`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Paquetes usados para Prisma
+
+- `prisma`
+- `@prisma/client`
