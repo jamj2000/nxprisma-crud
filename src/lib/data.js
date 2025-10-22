@@ -12,3 +12,18 @@ export async function getArticulos() {
         return null;
     }
 }
+
+
+
+
+export async function getArticulo(id) {
+    try {
+        const articulo = await prisma.articulo.findUnique({
+            where: { id }
+        })
+        return articulo;
+    } catch (error) {
+        // console.log(error);  
+        return null;
+    }
+}
