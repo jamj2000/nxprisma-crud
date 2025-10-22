@@ -18,7 +18,7 @@ export async function getArticulos() {
 
 export async function getArticulo(id) {
     try {
-        const articulo = await prisma.articulo.findMany({
+        const articulo = await prisma.articulo.findUnique({
             where: { id: Number(id) }
         })
         return articulo;
