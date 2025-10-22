@@ -11,6 +11,8 @@ import { createArticulo, updateArticulo, deleteArticulo } from "@/lib/actions"
 function ListaArticulos({ articulos }) {
     const lista = use(articulos)
 
+    console.log(lista);
+
     return (
         <>
             <Modal openElement={"NUEVO"}>
