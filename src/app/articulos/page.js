@@ -4,7 +4,7 @@ import ListaArticulos from '@/components/articulos/lista'
 
 
 
-export default function Home() {
+export default function PaginaArticulos() {
     const articulos = getArticulos()
 
     return (
