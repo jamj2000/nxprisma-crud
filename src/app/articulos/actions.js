@@ -1,65 +1,81 @@
 'use server'
 import prisma from '@/lib/prisma'
 import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
+
+
 
 
 export async function createArticulo(prevState, formData) {
-  try {
-    const nombre = formData.get('nombre')
-    const descripcion = formData.get('descripcion')
-    const precio = Number(formData.get('precio')) * 100  //convertimos € a centimos
 
-    const articulo = await prisma.articulo.create({
+  // Obtenemos datos
+  const nombre = formData.get('nombre')
+  const descripcion = formData.get('descripcion')
+  const precio = Number(formData.get('precio'))
+
+
+  // Realizamos operación en base de datos
+  try {
+    await prisma.articulo.create({
       data: { nombre, descripcion, precio },
     })
-
-    console.log(articulo);
-    revalidatePath('/articulos')
-    return { success: "Operación realizada con éxito" }
   } catch (error) {
     console.log(error);
     return { error: "Fallo al realizar la operación" }
   }
 
+
+  revalidatePath('/articulos')
+  return { success: "Operación realizada con éxito" }
 }
+
+
 
 
 export async function updateArticulo(prevState, formData) {
+
+  // Obtenemos datos
   const id = Number(formData.get('id'))
   const nombre = formData.get('nombre')
   const descripcion = formData.get('descripcion')
-  const precio = Number(formData.get('precio')) * 100  //convertimos € a centimos
+  const precio = Number(formData.get('precio'))
 
+
+  // Realizamos operación en base de datos
   try {
-    const articulo = await prisma.articulo.update({
+    await prisma.articulo.update({
       where: { id },
       data: { nombre, descripcion, precio },
     })
-    console.log(articulo);
-    revalidatePath('/articulos')
-    return { success: "Operación realizada con éxito" }
   } catch (error) {
     console.log(error);
     return { error: "Fallo al realizar la operación" }
   }
 
+
+  revalidatePath('/articulos')
+  return { success: "Operación realizada con éxito" }
 }
 
-export async function deleteArticulo(prevState, formData) {
-  try {
-    const id = Number(formData.get('id'))
 
-    const articulo = await prisma.articulo.delete({
-      where: {
-        id: id,
-      },
+
+
+
+export async function deleteArticulo(prevState, formData) {
+
+  // Obtenemos datos
+  const id = Number(formData.get('id'))
+
+  // Realizamos operación en base de datos
+  try {
+    await prisma.articulo.delete({
+      where: { id },
     })
-    console.log(articulo);
-    revalidatePath('/articulos')
-    return { success: "Operación realizada con éxito" }
+
   } catch (error) {
     console.log(error);
     return { error: "Fallo al realizar la operación" }
   }
 
+  redirect('/articulos')
 }

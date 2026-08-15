@@ -8,7 +8,7 @@ export async function getArticulos() {
         const articulos = await prisma.articulo.findMany()
         return articulos;
     } catch (error) {
-        // console.log(error);  
+        console.log(error);
         return null;
     }
 }
@@ -23,7 +23,7 @@ export async function getArticulo(id) {
         })
         return articulo;
     } catch (error) {
-        // console.log(error);  
+        console.log(error);
         return null;
     }
 }

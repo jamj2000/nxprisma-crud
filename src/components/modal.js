@@ -4,7 +4,7 @@ import { useRef } from 'react'
 
 
 
-const Modal = ({ children, openElement }) => {
+const Modal = ({ children, trigger }) => {
     const dialogRef = useRef(null);
 
     const openDialog = () => dialogRef.current?.showModal()
@@ -28,20 +28,21 @@ const Modal = ({ children, openElement }) => {
     return (
         <>
             <div onClick={openDialog}>
-                {openElement}
+                {trigger}
             </div>
 
 
             <dialog
                 ref={dialogRef}
                 onMouseDown={handleClickOutside}
-                className="m-auto backdrop:bg-black/50 backdrop:backdrop-blur-none w-[90%] lg:w-[60%] py-12 px-2 md:px-8 rounded-md outline-none">
-
-                {children}
-
+                className="m-auto backdrop:bg-black/50 backdrop:backdrop-blur-none w-[90%] lg:w-[60%] py-12 px-2 md:px-8 rounded-md outline-none"
+            >
                 <div onClick={closeDialog} className="absolute top-4 right-4 cursor-pointer" >
                     ❌
                 </div>
+
+                {children}
+
             </dialog>
 
 

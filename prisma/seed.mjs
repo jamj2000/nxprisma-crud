@@ -1,27 +1,34 @@
-import { PrismaClient } from '@prisma/client'
+import "dotenv/config";
+import { PrismaClient } from "../src/generated/prisma/client";
+import { PrismaPg } from "@prisma/adapter-pg";
+
+const adapter = new PrismaPg({
+    connectionString: process.env.DATABASE_URL,
+});
+
+const prisma = new PrismaClient({ adapter });
 
 // DECLARACIÓN DE DATOS
 const articulos = [
     {
         nombre: 'Monitor 17 pulgadas',
         descripcion: 'Monitor plano LCD',
-        precio: 11022,  // en centimos
+        precio: 110,
     },
     {
         nombre: 'Teclado',
         descripcion: 'Teclado USB en español',
-        precio: 2012,  // en centimos
+        precio: 20,
     },
     {
         nombre: 'Impresora',
         descripcion: 'Impresora láser a color',
-        precio: 36005, // en centimos
+        precio: 360,
     },
 ];
 
-// INSERCIÓN DE DATOS
-const prisma = new PrismaClient();
 
+// INSERCIÓN DE DATOS
 const load = async () => {
     try {
         await prisma.articulo.deleteMany({});
