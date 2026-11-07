@@ -2,7 +2,7 @@
 import prisma from '@/lib/prisma'
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
-
+import { updateTag } from 'next/cache';
 
 
 
@@ -25,7 +25,8 @@ export async function createArticulo(prevState, formData) {
   }
 
 
-  revalidatePath('/articulos')
+  // revalidatePath('/articulos')
+  updateTag('articulos')
   return { success: "Operación realizada con éxito" }
 }
 
@@ -53,7 +54,8 @@ export async function updateArticulo(prevState, formData) {
   }
 
 
-  revalidatePath('/articulos')
+  // revalidatePath('/articulos')
+  updateTag('articulos')
   return { success: "Operación realizada con éxito" }
 }
 
@@ -77,5 +79,6 @@ export async function deleteArticulo(prevState, formData) {
     return { error: "Fallo al realizar la operación" }
   }
 
+  updateTag('articulos')
   redirect('/articulos')
 }
