@@ -78,36 +78,43 @@ export const FormArticulo = ({ action, title, articulo, disabled = false }) => {
     }, [state, formId])
 
     return (
-        <form action={formAction} id={formId}>
+        <form action={formAction} id={formId} key={JSON.stringify(articulo)}>
             <input type='hidden' name='id' value={articulo?.id} />
 
             <fieldset disabled={disabled} className="flex flex-col py-4">
 
-                <label htmlFor='nombre' className="mt-4">Nombre</label>
-                <input
-                    name='nombre'
-                    placeholder='Nombre'
-                    defaultValue={articulo?.nombre} />
+                <label className="mt-4 flex flex-col">Nombre
+                    <input
+                        id="nombre"
+                        name='nombre'
+                        placeholder='Nombre'
+                        defaultValue={articulo?.nombre}
+                    />
+                </label>
 
+                <label className="mt-4 flex flex-col">Descripción
+                    <input
+                        id="descripcion"
+                        name='descripcion'
+                        placeholder='Descripción'
+                        defaultValue={articulo?.descripcion}
+                    />
+                </label>
 
-                <label htmlFor='descripcion' className="mt-4">Descripción</label>
-                <input
-                    name='descripcion'
-                    placeholder='Descripción'
-                    defaultValue={articulo?.descripcion} />
-
-
-                <label htmlFor='precio' className="mt-4">Precio</label>
-                <input
-                    type='number'
-                    name='precio'
-                    min='0'
-                    placeholder='precio'
-                    defaultValue={articulo?.precio} />
+                <label className="mt-4 flex flex-col">Precio
+                    <input
+                        type='number'
+                        id="precio"
+                        name='precio'
+                        min='0'
+                        placeholder='precio'
+                        defaultValue={articulo?.precio}
+                    />
+                </label>
             </fieldset>
 
             <button type='submit' autoFocus>{pending ? "Espere..." : title}</button>
-        </form>
+        </form >
     )
 }
 
